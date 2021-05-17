@@ -3,9 +3,12 @@ package com.firstapp.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,14 +17,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // get button by id
-        // add event to button
-        // call method inside event
-            // then inside method use intent object from class
-            // provide it the current class and distination class
-            //
         Button addTask = findViewById(R.id.button1);
-
         addTask.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -29,15 +25,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
         Button allTasks = findViewById(R.id.button2);
-
         allTasks.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
                 viewAllTasks();
             };
         });
+
+        TextView userViewName = findViewById(R.id.shared_user_name);
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String name = sp.getString("name","user unkown");
+        userViewName.setText(name);
 
     }
 
@@ -50,4 +49,18 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AllTasks.class);
         startActivity(intent);
     };
+
+    public void TaskDetailRedirect(View view) {
+        Intent taskDetailIntent = new Intent(this, TaskDetail.class);
+        Button button =(Button)view;
+        String title = button.getText().toString();
+        taskDetailIntent.putExtra("title",title);
+        startActivity(taskDetailIntent);
+    }
+
+
+    public void goToSettingPage(View view) {
+        Intent settingIntent = new Intent(this,SettingsPage.class);
+        startActivity(settingIntent);
+    }
 }
