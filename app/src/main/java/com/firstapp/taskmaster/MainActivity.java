@@ -14,14 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // get button by id
-        // add event to button
-        // call method inside event
-            // then inside method use intent object from class
-            // provide it the current class and distination class
-            //
         Button addTask = findViewById(R.id.button1);
-
         addTask.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -38,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
                 viewAllTasks();
             };
         });
-
     }
 
     protected void addTasks(){
