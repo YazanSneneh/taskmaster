@@ -46,9 +46,9 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder( TaskAdapter.ViewHolder holder, int position) {
 //       holder.getTextView().setText(titles[position]);
-        String task =   "Title: "+ tasks.get(position).title + "\n" +
-                        "Body: "+ tasks.get(position).body + "\n" +
-                        "Status: " + tasks.get(position).state;
+        String task =   "Title: "+ tasks.get(position).getTitle() + "\n" +
+                        "Body: "+ tasks.get(position).getBody() + "\n" +
+                        "Status: " + tasks.get(position).getState();
         holder.textView.setText(task);
 //        holder.textView.setOnClickListener(new View.OnClickListener() {
 //            @Override

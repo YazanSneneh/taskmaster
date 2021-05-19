@@ -38,3 +38,13 @@ I will add screen shots soon
 
 - task 2:
   ![task 2](/task%20two.png)
+
+
+# Class 29
+I will add screen shots soon
+- add a database.
+- add task to database from **add task** screen
+  ![add new task](add%20new%20task.jpeg)
+
+  - View List Of Tasks from Database:
+  ![view all items](/view%20list%20of%20tasks.jpeg)

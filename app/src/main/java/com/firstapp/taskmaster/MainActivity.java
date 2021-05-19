@@ -3,6 +3,7 @@ package com.firstapp.taskmaster;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -44,11 +45,13 @@ public class MainActivity extends AppCompatActivity {
         userViewName.setText(name);
 
 //        RecyclerView view
-        List tasks = new ArrayList();
-        tasks.add(new TaskModel("one","will finish at 8 pm", "dead man "));
-        tasks.add(new TaskModel("two","will finish at 9 pm", "disable"));
-        tasks.add(new TaskModel("three","will finish at 11 pm", "done"));
+          AppDataBase db = Room.databaseBuilder(getApplicationContext(),
+                AppDataBase.class, "tasks_master")
+                .allowMainThreadQueries().build();
 
+         DataAccessObject tasksDao = db.tasksDao();
+
+         List tasks = tasksDao.getAllTasks();
         RecyclerView recyclerView = findViewById(R.id.rvTasks);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new TaskAdapter(tasks);
@@ -73,11 +76,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(taskDetailIntent);
     }
 
-
     public void goToSettingPage(View view) {
         Intent settingIntent = new Intent(this,SettingsPage.class);
         startActivity(settingIntent);
     }
-
 
 }
