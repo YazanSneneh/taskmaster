@@ -1,6 +1,8 @@
 package com.firstapp.taskmaster;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,8 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
 
+public class MainActivity extends AppCompatActivity {
+    TaskAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +43,16 @@ public class MainActivity extends AppCompatActivity {
         String name = sp.getString("name","user unkown");
         userViewName.setText(name);
 
+//        RecyclerView view
+        List tasks = new ArrayList();
+        tasks.add(new TaskModel("one","will finish at 8 pm", "dead man "));
+        tasks.add(new TaskModel("two","will finish at 9 pm", "disable"));
+        tasks.add(new TaskModel("three","will finish at 11 pm", "done"));
+
+        RecyclerView recyclerView = findViewById(R.id.rvTasks);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new TaskAdapter(tasks);
+        recyclerView.setAdapter(adapter);
     }
 
     protected void addTasks(){
@@ -63,4 +78,6 @@ public class MainActivity extends AppCompatActivity {
         Intent settingIntent = new Intent(this,SettingsPage.class);
         startActivity(settingIntent);
     }
+
+
 }

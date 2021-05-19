@@ -25,3 +25,16 @@
 
   * All Tasks
   ![home](/screenshots/all_tasks.jpeg)
+
+  
+  ## Class 27
+I will add screen shots soon
+
+  ## Class 28
+  * added new list view with 3 tasks and i will show u two as example:
+
+- task 1:
+  ![task1](/task1.png)
+
+- task 2:
+  ![task 2](/task%20two.png)
