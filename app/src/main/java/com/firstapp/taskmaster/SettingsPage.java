@@ -19,6 +19,9 @@ public class SettingsPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_page);
 
+        getSupportActionBar().setTitle("Setting");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor userValues = sp.edit();
 

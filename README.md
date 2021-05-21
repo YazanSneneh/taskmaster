@@ -17,6 +17,7 @@
   * user can add his name and update it's value.
   * name will appear in home page
 ### Screen Shots
+  ## lab 26
   * home
   ![home](/screenshots/Home_Activity.jpeg)
 
@@ -25,26 +26,36 @@
 
   * All Tasks
   ![home](/screenshots/all_tasks.jpeg)
-
   
-  ## Class 27
-I will add screen shots soon
+  * Any new Task will contain **arrow back to main**
+  
+  ## Class lab 27
+   - Lab Features:
+     - **Task Details** page with dynamic title and lorem discription:
+    ![image](/screenshots/lab%2027%20task%20details%20page.jpeg)
+    - **Setting Page** Has been Added and user can enter his name:
+    ![image](/screenshots/lab%2027%20setting%20page.jpeg)
+    - Home Page **Update with user name**, example: Omar's Tasks:
+    ![image](/screenshots/lab%2027%20home%20page.jpeg)
 
   ## Class 28
   * added new list view with 3 tasks and i will show u two as example:
+ - all pages title in bar updated to have page name.
+ - now list of items are clickable, and move user to details page
+- task 1: now I have rendered list page from Recycler.
+  ![task1](/screenshots/task1.png)
 
-- task 1:
-  ![task1](/task1.png)
+- task 2: user can update his name from setting page
+  ![task 2](/screenshots/task%20two.png)
 
-- task 2:
-  ![task 2](/task%20two.png)
-
+- Item Details:
+  ![details](/screenshots/lab%2028%20clicked%20item%20details.jpeg)
 
 # Class 29
 I will add screen shots soon
-- add a database.
+- add a database So user Can Save tasks.
 - add task to database from **add task** screen
   ![add new task](add%20new%20task.jpeg)
 
-  - View List Of Tasks from Database:
-  ![view all items](/view%20list%20of%20tasks.jpeg)
+  - View List Of Tasks from Database with title, body and **Status**:
+  ![view all items](/screenshots/lab%2029%20status.jpeg)

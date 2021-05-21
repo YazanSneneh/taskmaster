@@ -16,6 +16,10 @@ public class AddTask extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_task);
 
+        // top bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Add New Task");
+
         Button button = findViewById(R.id.new_task_btn);
         button.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
