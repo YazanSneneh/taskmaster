@@ -51,7 +51,7 @@
 - Item Details:
   ![details](/screenshots/lab%2028%20clicked%20item%20details.jpeg)
 
-# Class 29
+## Class 29
 I will add screen shots soon
 - add a database So user Can Save tasks.
 - add task to database from **add task** screen
@@ -59,3 +59,12 @@ I will add screen shots soon
 
   - View List Of Tasks from Database with title, body and **Status**:
   ![view all items](/screenshots/lab%2029%20status.jpeg)
+## class 30
+- test for the main functionality of the application has been added.
+  - test the recycler view is working properly.
+  - test the setting page and shared preference username is working properly.
+  - test top bar contain the title.
+  - for future features test will be added.
+  - and tests of new features will be added here
+#### test screen shots
+![tests](/screenshots/app%20tests.png)
