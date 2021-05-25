@@ -44,7 +44,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
                 }
             });
         }
-
         public View getTextView() {
             return textView;
         }

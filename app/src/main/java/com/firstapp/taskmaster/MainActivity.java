@@ -9,13 +9,23 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.amplifyframework.AmplifyException;
+import com.amplifyframework.core.Amplify;
+import com.amplifyframework.core.model.query.Where;
+import com.amplifyframework.datastore.AWSDataStorePlugin;
+import com.amplifyframework.datastore.generated.model.Status;
+import com.amplifyframework.datastore.generated.model.Todo;
+
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.amplifyframework.datastore.generated.model.Status.HIGH;
 
 public class MainActivity extends AppCompatActivity implements TaskAdapter.OnItemClickListener {
     TaskAdapter adapter;
@@ -24,6 +34,16 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnIte
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        try {
+            Amplify.addPlugin(new AWSDataStorePlugin());
+            Amplify.configure(getApplicationContext());
+
+            Log.i("Todo ", "Initialized Amplify");
+        } catch (AmplifyException e) {
+            Log.e("Todo ", "Could not initialize Amplify", e);
+        }
+
 
         getSupportActionBar().setTitle("Main Page");
         Button addTask = findViewById(R.id.button1);
@@ -48,12 +68,44 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnIte
         userViewName.setText(name.trim()+"'s Tasks");
 
         // Room Client
-        AppDataBase db = Room.databaseBuilder(getApplicationContext(),
-                AppDataBase.class, "tasks_master")
-                .allowMainThreadQueries().build();
+//        AppDataBase db = Room.databaseBuilder(getApplicationContext(),
+//                AppDataBase.class, "tasks_master")
+//                .allowMainThreadQueries().build();
+//
+//        DataAccessObject tasksDao = db.tasksDao();
+//         List tasks = tasksDao.getAllTasks();
+//        RecyclerView recyclerView = findViewById(R.id.rvTasks);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//
+//        adapter = new TaskAdapter(tasks);
+//        recyclerView.setAdapter(adapter);
+//        adapter.setOnItemClickListener(MainActivity.this);
 
-        DataAccessObject tasksDao = db.tasksDao();
-         List tasks = tasksDao.getAllTasks();
+        List tasks = new ArrayList();
+     try {
+         Amplify.DataStore.query(Todo.class,
+        Where.matches(Todo.STATUS.eq(Status.HIGH)),
+               todos -> {
+
+              TaskModel task = null;
+                    while (todos.hasNext()) {
+                      Todo todo = todos.next();
+                            task.setTitle(todo.getName());
+                       if (todo.getStatus() != null) {
+                                task.setState(todo.getStatus().toString());
+                            }
+                       if (todo.getBody() != null) {
+                             task.setBody(todo.getBody());
+                         }
+                        tasks.add(task);
+                      }
+               },
+                         failure -> Log.e("Todo", "Could not query DataStore", failure)
+                   );
+               }catch (Exception exception){
+                   Log.e("Error:", " "+ exception);
+               }
+
         RecyclerView recyclerView = findViewById(R.id.rvTasks);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -65,6 +117,7 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnIte
     @Override
     public void onItemClick(int position) {
         Intent detailsIntent = new Intent(this, TaskDetail.class);
+
         // Room Client
         AppDataBase db = Room.databaseBuilder(getApplicationContext(),
                 AppDataBase.class, "tasks_master")
