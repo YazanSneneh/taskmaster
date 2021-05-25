@@ -52,11 +52,14 @@ dependencies {
     implementation "androidx.room:room-rxjava3:$room_version"
     // optional - Guava support for Room, including Optional and ListenableFuture
     implementation "androidx.room:room-guava:$room_version"
-    // optional - Test helpers
+
     testImplementation "androidx.room:room-testing:$room_version"
 
     // Espresso
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test:rules:1.1.0'
+
+    implementation 'com.amplifyframework:aws-api:1.17.4'
+    implementation 'com.amplifyframework:aws-datastore:1.17.4'
 }

@@ -38,6 +38,7 @@ public class MainActivityTest {
         String result= preferences.getString("name","user unkown");
         onView(withText(result.trim()+"'s Tasks")).check(matches(isDisplayed()));
     }
+
     @Test
     public void tapDetailsPage(){
        onView(withId(R.id.rvTasks)).perform(click());
