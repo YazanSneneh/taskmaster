@@ -68,3 +68,12 @@ I will add screen shots soon
   - and tests of new features will be added here
 #### test screen shots
 ![tests](/screenshots/app%20tests.png)
+
+## class 32
+- added Amplify with dynamo db.
+- data now is rendered from dynamo
+- and add task add to dynamo db now.\
+
+##### screen shots
+- save to database:
+![saved](screenshots/add%20to%20dynamo%20db.png)
