@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.amplifyframework.AmplifyException;
+import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.core.model.query.Where;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
@@ -37,8 +38,8 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnIte
 
         try {
             Amplify.addPlugin(new AWSDataStorePlugin());
+            Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.configure(getApplicationContext());
-
             Log.i("Todo ", "Initialized Amplify");
         } catch (AmplifyException e) {
             Log.e("Todo ", "Could not initialize Amplify", e);
@@ -86,16 +87,18 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnIte
          Amplify.DataStore.query(Todo.class,
         Where.matches(Todo.STATUS.eq(Status.HIGH)),
                todos -> {
-
               TaskModel task = null;
                     while (todos.hasNext()) {
                       Todo todo = todos.next();
                             task.setTitle(todo.getName());
-                       if (todo.getStatus() != null) {
+                        System.out.println("the title is title : "+task.getTitle());
+                        if (todo.getStatus() != null) {
                                 task.setState(todo.getStatus().toString());
-                            }
+                           System.out.println("the title is status: "+todo.getStatus());
+                       }
                        if (todo.getBody() != null) {
                              task.setBody(todo.getBody());
+                           System.out.println("the title is body: "+todo.getBody());
                          }
                         tasks.add(task);
                       }
