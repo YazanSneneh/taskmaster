@@ -9,10 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TaskMaster">
-        <activity android:name=".SettingsPage" android:parentActivityName=".MainActivity"/>
-        <activity android:name=".TaskDetail" android:parentActivityName=".MainActivity"/>
-        <activity android:name=".AllTasks" android:parentActivityName=".MainActivity"/>
-        <activity android:name=".AddTask" android:parentActivityName=".MainActivity"/>
+        <activity android:name=".LogIn"></activity>
+        <activity android:name=".ConfirmSignUp" />
+        <activity android:name=".SignUp" />
+        <activity
+            android:name=".SettingsPage"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".TaskDetail"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AllTasks"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".AddTask"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

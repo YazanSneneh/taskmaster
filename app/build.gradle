@@ -14,8 +14,6 @@ android {
         versionName "1.0"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        //testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -60,6 +58,10 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test:rules:1.1.0'
 
+    // aws
     implementation 'com.amplifyframework:aws-api:1.17.4'
-    implementation 'com.amplifyframework:aws-datastore:1.17.4'
+    implementation 'com.amplifyframework:core:1.17.4'
+
+    // aws auth
+    implementation 'com.amplifyframework:aws-auth-cognito:1.17.4'
 }

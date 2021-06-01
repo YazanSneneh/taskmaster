@@ -12,6 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.amazonaws.mobile.client.AWSMobileClient;
+import com.amazonaws.mobileconnectors.cognitoauth.Auth;
+import com.amplifyframework.core.Amplify;
+
 public class SettingsPage extends AppCompatActivity {
 
     @Override
@@ -31,9 +35,9 @@ public class SettingsPage extends AppCompatActivity {
             public void onClick(View v) {
                   EditText userNameView = findViewById(R.id.userName);
                   String userName= userNameView.getText().toString();
-
-                 userValues.putString("name",userName);
-                 userValues.apply();
+                  String name =  AWSMobileClient.getInstance().getUsername();
+                  userValues.putString("name",name);
+                  userValues.apply();
 
                 Intent mainActivityIntent = new Intent(SettingsPage.this, MainActivity.class);
                 startActivity(mainActivityIntent);

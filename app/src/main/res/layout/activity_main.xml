@@ -49,45 +49,6 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/taskOne"
-        android:layout_width="161dp"
-        android:layout_height="47dp"
-        android:onClick="TaskDetailRedirect"
-        android:text="task one"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.436"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.438" />
-
-    <Button
-        android:id="@+id/taskTwo"
-        android:layout_width="162dp"
-        android:layout_height="50dp"
-        android:onClick="TaskDetailRedirect"
-        android:text="Task Two"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.425"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.569" />
-
-    <Button
-        android:id="@+id/taskThree"
-        android:layout_width="164dp"
-        android:layout_height="49dp"
-        android:onClick="TaskDetailRedirect"
-        android:text="Task Three"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.429"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.673" />
-
-    <Button
         android:id="@+id/goToSetting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -97,9 +58,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskThree"
-        app:layout_constraintVertical_bias="0.774" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/shared_user_name"
@@ -119,11 +78,43 @@
         android:layout_height="101dp"
         android:layout_marginStart="2dp"
         android:layout_marginTop="116dp"
-        app:layout_constraintBottom_toTopOf="@+id/taskOne"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/signUpMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:text="Sign Up"
+        app:layout_constraintBottom_toTopOf="@+id/button1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.274"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/mainLoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.719"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvTasks"
+        app:layout_constraintVertical_bias="0.839" />
+
+    <Button
+        android:id="@+id/mainSignOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign out"
+        app:layout_constraintBottom_toTopOf="@+id/signUpMain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rvTasks" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
