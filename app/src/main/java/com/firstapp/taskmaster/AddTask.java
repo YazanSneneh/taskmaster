@@ -41,23 +41,23 @@ public class AddTask extends AppCompatActivity {
           String body = bodyText.getText().toString();
         String status = "new";
 
-//        TaskModel task = new TaskModel(title, body, status);
-//        AppDataBase db = Room.databaseBuilder(getApplicationContext(),
-//                AppDataBase.class, "tasks_master")
-//                .allowMainThreadQueries().build();
-//        DataAccessObject tasksDao = db.tasksDao();
-//        tasksDao.insertOne(task);
+        TaskModel task = new TaskModel(title, body, status);
+        AppDataBase db = Room.databaseBuilder(getApplicationContext(),
+                AppDataBase.class, "tasks_master")
+                .allowMainThreadQueries().build();
+        DataAccessObject tasksDao = db.tasksDao();
+        tasksDao.insertOne(task);
 
-        Todo item = Todo.builder()
-                .name(title)
-                .status(LOW)
-                .body(body)
-                .build();
-
-        Amplify.DataStore.save(item,
-                success -> Log.i("Tutorial", "Saved item: " + success.item().getName()),
-                error -> Log.e("Tutorial", "Could not save item to DataStore", error)
-        );
+//        Todo item = Todo.builder()
+//                .name(title)
+//                .status(LOW)
+//                .body(body)
+//                .build();
+//
+//        Amplify.DataStore.save(item,
+//                success -> Log.i("Tutorial", "Saved item: " + success.item().getName()),
+//                error -> Log.e("Tutorial", "Could not save item to DataStore", error)
+//        );
 
         TextView text = findViewById(R.id.submitted);
         text.setVisibility(View.VISIBLE);

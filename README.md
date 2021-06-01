@@ -72,8 +72,26 @@ I will add screen shots soon
 ## class 32
 - added Amplify with dynamo db.
 - data now is rendered from dynamo
-- and add task add to dynamo db now.\
+- and add task add to dynamo db now.
 
 ##### screen shots
 - save to database:
 ![saved](screenshots/add%20to%20dynamo%20db.png)
+
+
+## class Lab: 36 - Cognito
+- added Amplify with cognito for auth
+- now user can sign up.
+- now user can sign in.
+- now user can confirm sign out.
+- now user can sign out.
+- now username in name's tasks rendered by logged user instead of shared preference.
+##### screen shots
+- contain buttons and name viewed.
+  - ![home page](/screenshots/user%20home%20page.jpeg)
+- sign up screen
+  - ![sign up](/screenshots/sign%20up%20screen.jpeg)
+- Confirm sign up screen
+  - ![confirm sign up](/screenshots/confirm%20signup%20screen.jpeg)
+- login screen
+  - ![login page](/screenshots/signin.jpeg)

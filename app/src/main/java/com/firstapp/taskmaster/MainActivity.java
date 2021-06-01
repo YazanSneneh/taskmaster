@@ -16,10 +16,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.amplifyframework.AmplifyException;
+import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.cognito.AWSCognitoAuthPlugin;
+import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.core.model.query.Where;
-import com.amplifyframework.datastore.AWSDataStorePlugin;
+
 import com.amplifyframework.datastore.generated.model.Status;
 import com.amplifyframework.datastore.generated.model.Todo;
 
@@ -37,7 +39,6 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnIte
         setContentView(R.layout.activity_main);
 
         try {
-            Amplify.addPlugin(new AWSDataStorePlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.configure(getApplicationContext());
             Log.i("Todo ", "Initialized Amplify");
@@ -45,6 +46,20 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnIte
             Log.e("Todo ", "Could not initialize Amplify", e);
         }
 
+        findViewById(R.id.signUpMain).setOnClickListener(v ->{
+            Intent signUp = new Intent(this, SignUp.class);
+            startActivity(signUp);
+        });
+
+        findViewById(R.id.mainLoginButton).setOnClickListener(v ->{
+            Intent LogIn = new Intent(this, LogIn.class);
+            startActivity(LogIn);
+        });
+        // Check the current auth session  :: no session i will get error yet
+//        Amplify.Auth.fetchAuthSession(
+//                result -> Log.i("AmplifyQuickstart", result.toString()),
+//                error -> Log.e("AmplifyQuickstart", error.toString())
+//        );
 
         getSupportActionBar().setTitle("Main Page");
         Button addTask = findViewById(R.id.button1);
@@ -63,58 +78,64 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnIte
             };
         });
 
+        findViewById(R.id.mainSignOut).setOnClickListener(v ->{
+            Amplify.Auth.signOut(
+                    () -> Log.i("AuthQuickstart", "Signed out successfully"),
+                    error -> Log.e("AuthQuickstart", error.toString())
+            );
+        });
         TextView userViewName = findViewById(R.id.shared_user_name);
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         String name = sp.getString("name","user unkown");
         userViewName.setText(name.trim()+"'s Tasks");
 
         // Room Client
-//        AppDataBase db = Room.databaseBuilder(getApplicationContext(),
-//                AppDataBase.class, "tasks_master")
-//                .allowMainThreadQueries().build();
-//
-//        DataAccessObject tasksDao = db.tasksDao();
-//         List tasks = tasksDao.getAllTasks();
-//        RecyclerView recyclerView = findViewById(R.id.rvTasks);
-//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-//
-//        adapter = new TaskAdapter(tasks);
-//        recyclerView.setAdapter(adapter);
-//        adapter.setOnItemClickListener(MainActivity.this);
+        AppDataBase db = Room.databaseBuilder(getApplicationContext(),
+                AppDataBase.class, "tasks_master")
+                .allowMainThreadQueries().build();
 
-        List tasks = new ArrayList();
-     try {
-         Amplify.DataStore.query(Todo.class,
-        Where.matches(Todo.STATUS.eq(Status.HIGH)),
-               todos -> {
-              TaskModel task = null;
-                    while (todos.hasNext()) {
-                      Todo todo = todos.next();
-                            task.setTitle(todo.getName());
-                        System.out.println("the title is title : "+task.getTitle());
-                        if (todo.getStatus() != null) {
-                                task.setState(todo.getStatus().toString());
-                           System.out.println("the title is status: "+todo.getStatus());
-                       }
-                       if (todo.getBody() != null) {
-                             task.setBody(todo.getBody());
-                           System.out.println("the title is body: "+todo.getBody());
-                         }
-                        tasks.add(task);
-                      }
-               },
-                         failure -> Log.e("Todo", "Could not query DataStore", failure)
-                   );
-               }catch (Exception exception){
-                   Log.e("Error:", " "+ exception);
-               }
-
+        DataAccessObject tasksDao = db.tasksDao();
+         List tasks = tasksDao.getAllTasks();
         RecyclerView recyclerView = findViewById(R.id.rvTasks);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         adapter = new TaskAdapter(tasks);
         recyclerView.setAdapter(adapter);
         adapter.setOnItemClickListener(MainActivity.this);
+
+//        List tasks = new ArrayList();
+//     try {
+//         Amplify.DataStore.query(Todo.class,
+//        Where.matches(Todo.STATUS.eq(Status.HIGH)),
+//               todos -> {
+//              TaskModel task = null;
+//                    while (todos.hasNext()) {
+//                      Todo todo = todos.next();
+//                            task.setTitle(todo.getName());
+//                        System.out.println("the title is title : "+task.getTitle());
+//                        if (todo.getStatus() != null) {
+//                                task.setState(todo.getStatus().toString());
+//                           System.out.println("the title is status: "+todo.getStatus());
+//                       }
+//                       if (todo.getBody() != null) {
+//                             task.setBody(todo.getBody());
+//                           System.out.println("the title is body: "+todo.getBody());
+//                         }
+//                        tasks.add(task);
+//                      }
+//               },
+//                         failure -> Log.e("Todo", "Could not query DataStore", failure)
+//                   );
+//               }catch (Exception exception){
+//                   Log.e("Error:", " "+ exception);
+//               }
+//
+//        RecyclerView recyclerView = findViewById(R.id.rvTasks);
+//        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//
+//        adapter = new TaskAdapter(tasks);
+//        recyclerView.setAdapter(adapter);
+//        adapter.setOnItemClickListener(MainActivity.this);
     }
 
     @Override
@@ -156,4 +177,5 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnIte
         Intent settingIntent = new Intent(this,SettingsPage.class);
         startActivity(settingIntent);
     }
+
 }
