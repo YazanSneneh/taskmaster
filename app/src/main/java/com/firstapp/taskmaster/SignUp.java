@@ -19,7 +19,6 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-
         findViewById(R.id.sign_up_button).setOnClickListener(v ->{
             String userName = ((EditText)findViewById(R.id.AuthPersonName)).getText().toString();
             String password = ((EditText)findViewById(R.id.AuthTextPassword)).getText().toString();
@@ -37,8 +36,5 @@ public class SignUp extends AppCompatActivity {
             confirm.putExtra("name",userName);
             startActivity(confirm);
         });
-
-
-
     }
 }

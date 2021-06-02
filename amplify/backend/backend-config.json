@@ -7,5 +7,19 @@
       "dependsOn": [],
       "customAuth": false
     }
+  },
+  "function": {
+    "S3Triggera430337c": {
+      "service": "Lambda",
+      "providerPlugin": "awscloudformation",
+      "build": true
+    }
+  },
+  "storage": {
+    "s32f9c5c62": {
+      "service": "S3",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": []
+    }
   }
 }

@@ -4,7 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
+
+import com.amplifyframework.core.Amplify;
+
+import java.io.File;
 
 public class TaskDetail extends AppCompatActivity {
 
@@ -27,6 +32,15 @@ public class TaskDetail extends AppCompatActivity {
            taskTitleDetail.setText(title);
            bodyDetail.setText(body);
            statusDetails.setText(status);
+
+           findViewById(R.id.download_file).setOnClickListener(v->{
+               Amplify.Storage.downloadFile(
+                       "11111",
+                       new File(getApplicationContext().getFilesDir() + "/11111.txt"),
+                       result -> Log.i("MyAmplifyApp", "Successfully downloaded: " + result.getFile().getName()),
+                       error -> Log.e("MyAmplifyApp",  "Download Failure", error)
+               );
+           });
     }
 
 
