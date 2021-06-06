@@ -115,3 +115,10 @@ I will add screen shots soon
 ##### screen shots
   - ![Recieved Notifications](/screenshots/recieved%20notification.jpg)
 
+
+## class Lab: 41 - Intent Filters
+- now user when click on file to share, my task master will be an option.
+- file can be uploaded to S3 storage, and rendered to task details with other info.
+##### screen shots
+  ![Recieved Notifications](/screenshots/share%20file%20to%20taskmaster.jpeg)
+
