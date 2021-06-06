@@ -28,6 +28,4 @@ public class TaskDetail extends AppCompatActivity {
            bodyDetail.setText(body);
            statusDetails.setText(status);
     }
-
-
 }

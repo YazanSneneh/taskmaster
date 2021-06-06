@@ -95,3 +95,23 @@ I will add screen shots soon
   - ![confirm sign up](/screenshots/confirm%20signup%20screen.jpeg)
 - login screen
   - ![login page](/screenshots/signin.jpeg)
+
+## class Lab: 37 - S3
+- now user can attach files from device to cloud storage related to task.
+- also user can download file into task details
+
+##### screen shots
+- contain buttons and name viewed.
+  - ![home page](/screenshots/user%20home%20page.jpeg)
+- sign up screen
+  - ![sign up](/screenshots/sign%20up%20screen.jpeg)
+- Confirm sign up screen
+  - ![confirm sign up](/screenshots/confirm%20signup%20screen.jpeg)
+- login screen
+  - ![login page](/screenshots/signin.jpeg)
+
+## class Lab: 38 - Notifications
+- now user can recieve notifications from task master application.
+##### screen shots
+  - ![Recieved Notifications](/screenshots/recieved%20notification.jpg)
+
