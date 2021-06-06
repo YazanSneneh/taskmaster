@@ -1,5 +1,6 @@
 package com.firstapp.taskmaster;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amplifyframework.AmplifyException;
 import com.amplifyframework.auth.AuthUserAttributeKey;
@@ -24,6 +26,9 @@ import com.amplifyframework.core.model.query.Where;
 
 import com.amplifyframework.datastore.generated.model.Status;
 import com.amplifyframework.datastore.generated.model.Todo;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,8 +141,28 @@ public class MainActivity extends AppCompatActivity implements TaskAdapter.OnIte
 //        adapter = new TaskAdapter(tasks);
 //        recyclerView.setAdapter(adapter);
 //        adapter.setOnItemClickListener(MainActivity.this);
-    }
 
+        // generate token for notification
+
+        // notification system
+        FirebaseMessaging.getInstance().getToken()
+                .addOnCompleteListener(new OnCompleteListener<String>() {
+                    @Override
+                    public void onComplete(@NonNull Task<String> task) {
+                        if (!task.isSuccessful()) {
+                            Log.w("notification token : ", "Fetching FCM registration token failed", task.getException());
+                            return;
+                        }
+
+                        String token = task.getResult();
+
+                        // Log and toast
+                        Log.d("notification recieved ", " notification recieved ");
+                        Log.d("token generated : ", token);
+                        Toast.makeText(MainActivity.this, ": notification from toast ", Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
     @Override
     public void onItemClick(int position) {
         Intent detailsIntent = new Intent(this, TaskDetail.class);
